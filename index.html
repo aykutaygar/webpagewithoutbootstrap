@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Deneme Index</title>
+    <script src="blockly_compressed.js"></script>
+    <script src="blocks_compressed.js"></script>
+    <script src="python_compressed.js"></script>
+    <script src="en.js"></script>
+    <script src="robot.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <div class="topnav">
+        <a class="active" href="#home">Robot</a>
+        <a href="#news">Yapay Zeka</a>
+        <a href="#contact">Contact</a>
+    </div>
+    
+</head>
+<body>
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+        <button class="tablinks" onclick="openCity(event, 'blocklyDiv')">blocklyDiv</button>
+        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+      </div>
+      
+      <!-- Tab content -->
+      <div id="London" class="tabcontent">
+        <h3>London</h3>
+        <p>London is the capital city of England.</p>
+      </div>
+        
+      <div id="blocklyDiv" class="tabcontent" style="height: 600px; width: 1280px;"></div>
+            <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+
+              <category name="Robot" colour="%{BKY_COLOUR_HUE}">
+                <block type="sag">
+                  <field name="sag"></field>
+                </block>
+              </category>
+            
+            </xml>
+
+      
+      <div id="Tokyo" class="tabcontent">
+        <h3>Tokyo</h3>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+
+    <div class="imageDiv">
+      <img class="diploma1" src="http://127.0.0.1:8000/video_feed" absolute:"right">
+    </div>
+    
+</body>
+<script>
+    
+var demoWorkspace = null;
+
+function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;    
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+
+    if(cityName == 'blocklyDiv'){
+        document.getElementById('toolbox').style.display = "block"
+        if(demoWorkspace == null)
+            demoWorkspace = Blockly.inject('blocklyDiv',
+                {media: '{% static "/media/" %}',          
+                toolbox: document.getElementById('toolbox')});      
+    }
+    else{
+        document.getElementById('toolbox').style.display = "none"
+    }    
+}   
+</script>
+</html>
